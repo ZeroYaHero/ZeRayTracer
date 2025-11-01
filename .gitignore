@@ -1,0 +1,5 @@
+out/*
+!out/build
+out/build/*
+CMakePresets.json
+.vs/
