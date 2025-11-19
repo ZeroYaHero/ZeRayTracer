@@ -13,7 +13,7 @@ endif()
 set(SRC_DIR "${CMAKE_SOURCE_DIR}/src")
 
 set(CORE_DIR "${SRC_DIR}/core")
-set(CORE "${CORE_DIR}/Vec3.cpp" "${CORE_DIR}/Ray.cpp")
+set(CORE "${CORE_DIR}/Vec3.cpp" "${CORE_DIR}/Ray.cpp" "${CORE_DIR}/Sphere.cpp" "${CORE_DIR}/HitPayload.cpp" "${CORE_DIR}/HittableList.cpp" "${CORE_DIR}/Interval.cpp" "${CORE_DIR}/Camera.cpp")
 add_library(Core STATIC ${CORE})
 target_include_directories(Core PUBLIC ${CORE_DIR})
 

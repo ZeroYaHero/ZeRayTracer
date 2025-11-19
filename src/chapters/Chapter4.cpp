@@ -59,7 +59,7 @@ int init_chapter()
 	// So we just need to calculate the upper left:
 	auto viewport_upper_left = camera_center - vec3(focal_length, 0, 0) - (viewport_u / 2) - (viewport_v / 2);
 	// Then we calculate the actual position of the pixel (multiply pixel delta by 0.5 to get half delta for center)
-	auto pixel_00_loc = viewport_upper_left + 0.5 * (pixel_delta_u * pixel_delta_v); // Pixel origin position in 3D space!!!
+	auto pixel_00_loc = viewport_upper_left + 0.5 * (pixel_delta_u + pixel_delta_v); // Pixel origin position in 3D space!!!
 
 	std::cout << "P3\n" << image_pixel_width << ' ' << image_pixel_height << "\n255\n";
 	for (int j = 0; j < image_pixel_height; j++)
