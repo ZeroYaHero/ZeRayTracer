@@ -10,20 +10,31 @@ if (POLICY CMP0141)
   set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
 endif()
 
-set(SRC_DIR "${CMAKE_SOURCE_DIR}/src")
 
-set(CORE_DIR "${SRC_DIR}/core")
-set(CORE "${CORE_DIR}/Vec3.cpp" "${CORE_DIR}/Ray.cpp" "${CORE_DIR}/Sphere.cpp" "${CORE_DIR}/HitPayload.cpp" "${CORE_DIR}/HittableList.cpp" "${CORE_DIR}/Interval.cpp" "${CORE_DIR}/Camera.cpp")
+set(CORE_DIR "core")
+set(CORE_SRC_DIR "${CORE_DIR}/src")
+
+set(CORE	"${CORE_SRC_DIR}/Vec3.cpp" 
+			"${CORE_SRC_DIR}/Ray.cpp" 
+			"${CORE_SRC_DIR}/Sphere.cpp" 
+			"${CORE_SRC_DIR}/HitPayload.cpp" 
+			"${CORE_SRC_DIR}/HittableList.cpp" 
+			"${CORE_SRC_DIR}/Interval.cpp" 
+			"${CORE_SRC_DIR}/Camera.cpp" 
+			"${CORE_SRC_DIR}/Material.cpp"
+)
+
 add_library(Core STATIC ${CORE})
-target_include_directories(Core PUBLIC ${CORE_DIR})
+target_include_directories(Core PUBLIC "${CORE_DIR}/include")
 
-set(CHAPTERS_DIR "${SRC_DIR}/chapters")
-file(GLOB CHAPTERS "${CHAPTERS_DIR}/Chapter*.cpp")
-set(SOURCES "${SRC_DIR}/Main.cpp" ${CHAPTERS})
+set(APP_DIR "${CMAKE_SOURCE_DIR}/app")
+set(CHAPTERS_DIR "${APP_DIR}/chapters")
+file(GLOB CHAPTERS "${CHAPTERS_DIR}/Chapter**.cpp")
+set(SOURCES "${APP_DIR}/Main.cpp" ${CHAPTERS})
 
 # Add source to this project's executable.
 add_executable (RayTracer ${SOURCES})
-target_include_directories(RayTracer PRIVATE ${CHAPTERS_DIR})
+target_include_directories(RayTracer PRIVATE "${APP_DIR}/include")
 target_link_libraries(RayTracer PRIVATE Core)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
