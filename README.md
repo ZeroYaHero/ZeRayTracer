@@ -54,7 +54,7 @@ I am beginner and a learner. I find that making decisions like these allows me t
 something and why you do not.
 
 ### Functional
-- **Composition Over OOP**: Instead of making materials inherit eachother, I just defined one and optionally set values. I also opted out of using the "Hittable" abstract class due to the VTable lookups necesary, and instead just used template programming.
+- **Composition Over OOP**: Instead of making materials inherit eachother, I just defined one and optionally set values.
 - **Multithreading**: With the CPU doing the rendering it can get painfully slow with samples and bounces. I used the standard library threading, split the texture into x sections (either predefined or your hardware concurrency limit) and write each pixel to a buffer which is then read into the texture file (via piping).
 - **Absence Front Facing Normal Boolean**: I did not get this. Felt like an unnecessary byte to add when you can just calculate the dot product to determine which side of the face the ray intersects with.
 - **Move Semantics**: I prefer the simple primitives of C for memory management, but when in Rome... Tried to take advantage of moves whenever since there is a decent portion of code that utilizes rvalues.
